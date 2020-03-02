@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
+import { v4 as uuidv4 } from "uuid";
 
-export const AddTransation = () => {
+export const AddTransaction = () => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState("");
+
+  const { addTransaction } = useContext(GlobalContext);
+
+  const onSubmit = e => {
+    e.preventDefault();
+    const newTransaction = {
+      id: uuidv4(),
+      text,
+      amount: parseInt(amount)
+    };
+
+    addTransaction(newTransaction);
+  };
 
   return (
     <>
       <h3>Add new transaction</h3>
-      <form id="form">
+      <form id="form" onSubmit={onSubmit}>
         <div className="form-control">
           <label htmlFor="text">Text</label>
           <input
