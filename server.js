@@ -12,6 +12,9 @@ const transactions = require("./routes/transactions.js");
 
 const app = express();
 
+// express.json() is middleware that allows us to use body parser
+app.use(express.json());
+
 app.use("/api/v1/transactions", transactions);
 
 const PORT = process.env.PORT || 5000;
