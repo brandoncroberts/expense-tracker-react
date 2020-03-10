@@ -13,12 +13,12 @@ export const Transaction = ({ transaction }) => {
     <li className={sign.class}>
       {transaction.text}
       <span>
-        {sign.sign}${Math.abs(transaction.amount)}
+        {sign.sign}${Math.abs(transaction.amount).toLocaleString()}
       </span>
       <button
         className="delete-btn"
         onClick={() => {
-          deleteTransaction(transaction.id);
+          deleteTransaction(transaction._id);
         }}
       >
         x
