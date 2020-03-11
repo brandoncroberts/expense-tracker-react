@@ -5,29 +5,32 @@ export const IncomeExpenses = () => {
   const { transactions } = useContext(GlobalContext);
   const amounts = transactions.map(transaction => transaction.amount);
 
-  const income = amounts
-    .filter(amount => amount > 0)
-    .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-    .toFixed(2);
+  const income = parseInt(
+    amounts
+      .filter(amount => amount > 0)
+      .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+      .toFixed(2)
+  );
 
-  const expense =
+  const expense = parseInt(
     amounts
       .filter(amount => amount < 0)
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-      .toFixed(2) * -1;
+      .toFixed(2) * -1
+  );
 
   return (
     <div className="inc-exp-container">
       <div>
         <h4>Income</h4>
         <p id="money-plus" className="money plus">
-          ${income}
+          ${income.toLocaleString()}
         </p>
       </div>
       <div>
         <h4>Expense</h4>
         <p id="money-minus" className="money minus">
-          ${expense}
+          ${expense.toLocaleString()}
         </p>
       </div>
     </div>
